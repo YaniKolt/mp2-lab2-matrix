@@ -26,86 +26,140 @@ TEST(TDynamicMatrix, can_create_copied_matrix)
 
 TEST(TDynamicMatrix, copied_matrix_is_equal_to_source_one)
 {
-  ADD_FAILURE();
+	TDynamicMatrix<int> v(11);
+	for (int i = 0; i < 11; i++) {
+		for (int j = 0; j < 11; j++) {
+			v[i][j] = 111;
+		}
+	}
+	TDynamicMatrix<int> k(v);
+	EXPECT_EQ(v, k);
 }
 
 TEST(TDynamicMatrix, copied_matrix_has_its_own_memory)
 {
-  ADD_FAILURE();
+	TDynamicMatrix<int> v(11);
+	for (int i = 0; i < 11; i++) {
+		for (int j = 0; j < 11; j++) {
+			v[i][j] = 111;
+		}
+	}
+	TDynamicMatrix<int> k(v);
+	for (int i = 0; i < 11; i++) {
+		for (int j = 0; j < 11; j++) {
+			k[i][j] = 0;
+		}
+	}
+	EXPECT_NE(v, k);
 }
 
 TEST(TDynamicMatrix, can_get_size)
 {
-  ADD_FAILURE();
+	TDynamicMatrix<int> v(11);
+	EXPECT_EQ(11, v.size());
 }
 
 TEST(TDynamicMatrix, can_set_and_get_element)
 {
-  ADD_FAILURE();
+	TDynamicMatrix<int> v(11);
+	v[7][7] = 7;
+	EXPECT_EQ(7, v[7][7]);
 }
 
 TEST(TDynamicMatrix, throws_when_set_element_with_negative_index)
 {
-  ADD_FAILURE();
+	TDynamicMatrix<int> v(11);
+	ASSERT_ANY_THROW(v.at(-1, -1) = 7);
 }
 
 TEST(TDynamicMatrix, throws_when_set_element_with_too_large_index)
 {
-  ADD_FAILURE();
+	TDynamicMatrix<int> v(11);
+	ASSERT_ANY_THROW(v.at(12, 12) = 7);
 }
 
 TEST(TDynamicMatrix, can_assign_matrix_to_itself)
 {
-  ADD_FAILURE();
+	TDynamicMatrix<int> v(11);
+	ASSERT_NO_THROW(v = v);
 }
 
 TEST(TDynamicMatrix, can_assign_matrices_of_equal_size)
 {
-  ADD_FAILURE();
+	TDynamicMatrix<int> v(11);
+	TDynamicMatrix<int> w(11);
+	EXPECT_EQ(v.size(), w.size());
 }
 
 TEST(TDynamicMatrix, assign_operator_change_matrix_size)
 {
-  ADD_FAILURE();
+	TDynamicMatrix<int> v(11);
+	TDynamicMatrix<int> k(11);
+	ASSERT_NO_THROW(v = k);
 }
 
 TEST(TDynamicMatrix, can_assign_matrices_of_different_size)
 {
-  ADD_FAILURE();
+	TDynamicMatrix<int> v(11);
+	TDynamicMatrix<int> k(12);
+	ASSERT_NO_THROW(v = k);
 }
 
 TEST(TDynamicMatrix, compare_equal_matrices_return_true)
 {
-  ADD_FAILURE();
+	TDynamicMatrix<int> v(11);
+	for (int i = 0; i < 11; i++) {
+		for (int j = 0; j < 11; j++) {
+			v[i][j] = 111;
+		}
+	}
+	TDynamicMatrix<int> k(v);
+	EXPECT_EQ(true, v == k);
 }
 
 TEST(TDynamicMatrix, compare_matrix_with_itself_return_true)
 {
-  ADD_FAILURE();
+	TDynamicMatrix<int> v(11);
+	for (int i = 0; i < 11; i++) {
+		for (int j = 0; j < 11; j++) {
+			v[i][j] = 111;
+		}
+	}
+	EXPECT_EQ(true, v == v);
 }
 
 TEST(TDynamicMatrix, matrices_with_different_size_are_not_equal)
 {
-  ADD_FAILURE();
+	TDynamicMatrix<int> v(11);
+	TDynamicMatrix<int> k(12);
+	EXPECT_NE(v, k);
 }
 
 TEST(TDynamicMatrix, can_add_matrices_with_equal_size)
 {
-  ADD_FAILURE();
+	TDynamicMatrix<int> v(11);
+	TDynamicMatrix<int> k(11);
+	ASSERT_NO_THROW(v + k);
 }
 
 TEST(TDynamicMatrix, cant_add_matrices_with_not_equal_size)
 {
-  ADD_FAILURE();
+	TDynamicMatrix<int> v(11);
+	TDynamicMatrix<int> k(12);
+	ASSERT_ANY_THROW(v + k);
 }
 
 TEST(TDynamicMatrix, can_subtract_matrices_with_equal_size)
 {
-  ADD_FAILURE();
+	TDynamicMatrix<int> v(11);
+	TDynamicMatrix<int> k(11);
+	ASSERT_NO_THROW(v - k);
 }
 
 TEST(TDynamicMatrix, cant_subtract_matrixes_with_not_equal_size)
 {
-  ADD_FAILURE();
+	TDynamicMatrix<int> v(11);
+	TDynamicMatrix<int> k(12);
+	ASSERT_ANY_THROW(v - k);
 }
 
